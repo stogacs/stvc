@@ -2,7 +2,6 @@ package stvc
 
 import (
 	"errors"
-	"fmt"
 )
 
 var (
@@ -63,10 +62,6 @@ func Count(seats int, ballots [][]string) ([]string, error) {
 			winners := map[string]float64{}
 
 			for _, b := range ballotsv {
-				fmt.Printf("%v\n", b)
-			}
-
-			for _, b := range ballotsv {
 				// Accumulates from first choices
 				first := b[0].Name
 				votes, ok := cv[first]
@@ -81,9 +76,6 @@ func Count(seats int, ballots [][]string) ([]string, error) {
 					winners[c] = votes
 				}
 			}
-
-			fmt.Printf("winners: %v\n", winners)
-			println("")
 
 			for winner := range winners {
 				overallWinners = append(overallWinners, winner)
@@ -139,8 +131,6 @@ func Count(seats int, ballots [][]string) ([]string, error) {
 				loser = c
 			}
 		}
-
-		fmt.Printf("loser: %s\n", loser)
 
 		// Eliminate biggest loser
 		for i := range ballotsv {
